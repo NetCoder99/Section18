@@ -1,6 +1,7 @@
 import { createStore } from "redux";
 
 export const counterActions = {
+  reset: "reset",
   increment: "increment",
   decrement: "decrement",
   toggleDisplay: "toggleDisplay",
@@ -12,6 +13,9 @@ const initState = {
 };
 
 const counterReducer = (state = initState, action) => {
+  if (action.type === counterActions.reset) {
+    return { ...state, counter: 0 };
+  }
   if (action.type === counterActions.increment) {
     return { ...state, counter: state.counter + action.amount };
   }
